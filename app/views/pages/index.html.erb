@@ -3,14 +3,15 @@
 <div ng-app="app">
   <div ng-controller="stuffCtrl">
     {{ message }}
-    <div ng-repeat="newMesage in messages track by $index">
-      <p>What a great message</p>
-      <p>{{newMesage}}</p>
+    <div ng-if="isNice(newMesage)" ng-repeat="newMesage in messages">
+      <p ng-click="removeMessage($index)">{{newMesage.review}}  - {{newMesage.rating}} - {{newMesage.reviewer}}</p>
     </div>
 
 
-      <p><input ng-model="review"></p>
-      <button ng-click="addReviewToMessages(review)">Add this</button>
+      <p>review<input ng-model="review"></p>
+      <p>rating<input ng-model="rating"></p>
+      <p>reviewer<input ng-model="reviewer"></p>
+      <button ng-click="addReviewToMessages(review, rating, reviewer)">Add this</button>
 
   </div>
   {{ 1 + 1 }}

@@ -3,18 +3,48 @@
 
   angular.module("app").controller("stuffCtrl", function($scope){
     $scope.messages = [
-      "Angular is cool",
-      "Angular is better than react, Joel",
-      "Angular Angular"
+      {
+        review: "Angular is cool",
+        rating: 5,
+        reviewer: "Joe"
+      },
+      {
+        review: "Angular is better than react, Joel",
+        rating: 3,
+        reviewer: "Joel"
+      },
+      {
+        review: "Angular Angular",
+        rating: 1,
+        reviewer: "Jane"
+      }
+
     ];
     // this is to help debug
     window.$scope = $scope;
 
-    $scope.addReviewToMessages = function(someReview){
-      console.log(someReview);
-      console.log('hi');
-      $scope.messages.push(someReview);
-      //  add this on the page
+    $scope.addReviewToMessages = function(someReview, someRating, someReviewer){
+
+       if (someReview && someRating && someReviewer) {
+        $scope.messages.push(
+          {
+            review: someReview,
+            rating: someRating,
+            reviewer: someReviewer
+          }
+        );
+          $scope.review = '';
+          $scope.rating = '';
+          $scope.reviewer = '';
+       }
+    }
+
+    $scope.removeMessage = function(theIndex){
+      $scope.messages.splice(theIndex, 1);
+    }
+
+    $scope.isNice = function(someReview){
+      return someReview.review.indexOf('bad') === -1;
     }
 
   });
